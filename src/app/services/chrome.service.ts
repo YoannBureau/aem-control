@@ -19,4 +19,8 @@ export class ChromeService {
     });
   }
 
+  navigateToUrl(url: string): void {
+    chrome.tabs.update({ url: url });
+  }
+
 }

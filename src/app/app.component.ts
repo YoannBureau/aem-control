@@ -60,4 +60,54 @@ export class AppComponent implements AfterViewInit {
       return this.currentUrl.replace('cf#/', '');
     }
   }
+
+  contentFinderToggleChange() {
+    const url = this.generateContentFinderModeUrl(!this.isContentFinderEnabled());
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  wcmModeToggleChange() {
+    const url = this.generateWcmModeUrl(!this.isWcmModeEnabled());
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  siteAdminClick(event: MouseEvent) {
+    const url = `${this.getCurrentBaseUrl()}/siteadmin`;
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  crxClick(event: MouseEvent) {
+    const url = `${this.getCurrentBaseUrl()}/crx/de`;
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  damAdminClick(event: MouseEvent) {
+    const url = `${this.getCurrentBaseUrl()}/damadmin`;
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  configManagerClick(event: MouseEvent) {
+    const url = `${this.getCurrentBaseUrl()}/system/console/configMgr`;
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  userAdminClick(event: MouseEvent) {
+    const url = `${this.getCurrentBaseUrl()}/useradmin`;
+    this.chromeService
+      .navigateToUrl(url);
+  }
+
+  getCurrentBaseUrl(): string {
+    const pathArray = this.currentUrl.split('/');
+    const protocol = pathArray[0];
+    const host = pathArray[2];
+
+    return `${protocol}//${host}`;
+  }
 }
